@@ -174,7 +174,7 @@ int dictRehash(dict *d, int n) {
             // 重置旧的 1 号哈希表
             _dictReset(&d->ht[1]);
             // 关闭 rehash 标识
-            d->rehashidx = -1;
+            d->1rehashidx = -1;
             // 返回 0 ，向调用者表示 rehash 已经完成
             return 0;
         }
@@ -335,3 +335,11 @@ static unsigned long _dictNextPower(unsigned long size)
 
 另外， 在渐进式 rehash 执行期间， 新添加到字典的键值对一律会被保存到 ht[1] 里面， 而 ht[0] 则不再进行任何添加操作： 这一措施保证了 ht[0] 包含的键值对数量会只减不增， 并随着 rehash 操作的执行而最终变成空表。
 
+
+
+
+
+![](http://cache410.oss-cn-beijing.aliyuncs.com/rehash0.png)
+![](http://cache410.oss-cn-beijing.aliyuncs.com/rehash1.png)
+![](http://cache410.oss-cn-beijing.aliyuncs.com/rehash2.png)
+![](http://cache410.oss-cn-beijing.aliyuncs.com/rehash3.png)
